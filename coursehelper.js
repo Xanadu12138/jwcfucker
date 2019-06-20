@@ -48,15 +48,15 @@ function fuckJWC() { //干傻逼教务处
             "-": parseInt(new Date().getTime() / 1000),
         }
         var coursename = $("tr.selected > td:nth-child(2) > div:nth-child(1) > a").attr("title");
-        console.log(coursename);
-        console.log(postdata);
+        //console.log(coursename);
+        //console.log(postdata);
         //HERE WE GO
         sendData(url, postdata,coursename);
     }
 
 }
 setInterval(function () {
-    console.log("第" + count++ + "次尝试注入工具栏");
+    //console.log("第" + count++ + "次尝试注入工具栏");
     initButton();
 }, 1000)
 
