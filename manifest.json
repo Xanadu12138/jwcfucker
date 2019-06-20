@@ -1,0 +1,22 @@
+{
+    "name": "FUCKJWC",
+    "manifest_version": 2,
+    "version": "0.0.1",
+    "description": "Copyright:DYC",
+    "browser_action": {
+      "default_icon": "hightlike.png",
+      "default_popup":"popup.html"
+    },
+    
+    "content_scripts": [
+        {
+          "matches": ["http://202.114.90.180/Course/*","http://202.114.90.184/Course/*","http://59.69.102.13/Course/*","http://202.114.50.131/Course/*","http://202.114.50.130/Course/*","http://218.197.102.183/Course/*"],
+          "js": ["Jquery.js","coursehelper.js"]
+        }
+      ],
+      "permissions":[
+        "storage"
+      ]
+      
+  }
+  
