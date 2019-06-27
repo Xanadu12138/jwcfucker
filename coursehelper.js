@@ -74,16 +74,18 @@ function sendData(obj, post,name) {
                 //statucode:200 成功
                 //300 失败
                 //301 傻逼土豆服务器又挂了
-                if (data["statusCode"] === "200") {
-                    alert("恭喜，"+name+"抢课成功!Donate me plz!");
-                    clearInterval(Interval);
-                } else if (data["statusCode"] === "300") {
+                console.log(data);
+                if (data["statusCode"] === "300") {
                     console.log(name+"选课失败 因为" + data["message"]);
                 } else if (data["statusCode"] === "301") {
                     console.log(name+"选课失败 因为" + data["message"]);
                     console.log("建议刷新后重试");
                 }
 
+            },
+            error: function(data){ //教务处回调不规范or涉及跨域
+                alert("恭喜，"+name+"抢课成功!Donate me plz!");
+                clearInterval(Interval);
             }
         })
     }, 1000)
