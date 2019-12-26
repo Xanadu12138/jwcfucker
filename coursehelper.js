@@ -3,6 +3,18 @@ var count = 0;
 var ajaxcount = 0;
 var listnumber = 0;
 
+function none() {
+    //傻逼遮罩层
+    let i = 3;
+    let sbtn=$("<button id='skip'>Skip</button>");
+    sbtn.appendTo("#MyDiv");
+    $("#skip").click(function(){
+        document.getElementById("fade").style.display = "none";
+        document.getElementById("MyDiv").style.display = "none";
+    });
+   
+}
+
 function initButton() {
     // 避免在首页初始化按钮的时候始终初始化失败造成死循环
     if ($("#navTab > div.navTab-panel.tabsPageContent.layoutBox > div:nth-child(2) > div > div > div:nth-child(1)").html() !== null) {
@@ -19,12 +31,12 @@ function initButton() {
             }, function () {
                 $(this).removeClass("hover");
             });
-           
+
             // 绑定按钮点击事件
             btn.click(function () {
                 fuckJWC();
             });
-           
+
         }
     }
 }
@@ -51,16 +63,17 @@ function fuckJWC() { //干傻逼教务处
         //console.log(coursename);
         //console.log(postdata);
         //HERE WE GO
-        sendData(url, postdata,coursename);
+        sendData(url, postdata, coursename);
     }
 
 }
+none();
 setInterval(function () {
-    //console.log("第" + count++ + "次尝试注入工具栏");
+    console.log("第" + count++ + "次尝试注入工具栏");
     initButton();
 }, 1000)
 
-function sendData(obj, post,name) {
+function sendData(obj, post, name) {
     var Interval = setInterval(function () {
         console.log(obj);
         ajaxcount++;
@@ -76,15 +89,15 @@ function sendData(obj, post,name) {
                 //301 傻逼土豆服务器又挂了
                 console.log(data);
                 if (data["statusCode"] === "300") {
-                    console.log(name+"选课失败 因为" + data["message"]);
+                    console.log(name + "选课失败 因为" + data["message"]);
                 } else if (data["statusCode"] === "301") {
-                    console.log(name+"选课失败 因为" + data["message"]);
+                    console.log(name + "选课失败 因为" + data["message"]);
                     console.log("建议刷新后重试");
                 }
 
             },
-            error: function(data){ //教务处回调不规范or涉及跨域
-                alert("恭喜，"+name+"抢课成功!Donate me plz!");
+            error: function (data) { //教务处回调不规范or涉及跨域
+                alert("恭喜，" + name + "抢课成功!Donate me plz!");
                 clearInterval(Interval);
             }
         })
